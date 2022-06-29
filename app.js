@@ -31,6 +31,16 @@ app.post('/items',function(req,res){
   return res.json({"added":req.body});
 })
 
+/** Resturns JSON of single item in shopping cart, matching url param "name" */
+app.get('/items/:name',function(req,res){
+  // For of loop through the array
+  // Checking for the name of object == req.params.name
+  //Return that object
+
+
+
+})
+
 
 
 
