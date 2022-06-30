@@ -4,11 +4,9 @@
 const express = require("express");
 const { items } = require("./fakeDb");
 // ############## Must import Routing File to use in app.use("/items,userRoutes" line 19)
-const userRoutes = require('./patch');
+const userRoutes = require("./patch");
 
 const app = express();
-
-
 
 // useful error class to throw
 const { NotFoundError, BadRequestError } = require("./expressError");
@@ -33,9 +31,9 @@ app.post("/items", function (req, res) {
   // Return {name: "popsicle", price: 1.45}}
   debugger;
   const first = req.body;
-  const recieved = req.body.name;
+  const received = req.body.name;
   items.push(req.body);
-  return res.json({ added: req.body });
+  return res.status(201).json({ added: req.body });
 });
 
 /** Resturns JSON of single item in shopping cart, matching url param "name" */
