@@ -3,13 +3,20 @@
 
 const express = require("express");
 const { items } = require("./fakeDb");
+// ############## Must import Routing File to use in app.use("/items,userRoutes" line 19)
+const userRoutes = require('./patch');
+
 const app = express();
+
+
 
 // useful error class to throw
 const { NotFoundError, BadRequestError } = require("./expressError");
 const { response } = require("express");
 
 app.use(express.json());
+
+app.use("/items", userRoutes);
 
 /** Returns JSON of all items in shopping cart
  * {items: [name: "popsicle", price: 1.45] } */
@@ -44,15 +51,15 @@ app.get("/items/:name", function (req, res) {
   }
 });
 
-app.patch("/items/:name", function (req, res) {
-  debugger;
-  for (let item of items) {
-    if (item.name === req.params.name) {
-      item.price = req.body.price;
-      return res.json({ updated: item });
-    }
-  }
-});
+// app.patch("/items/:name", function (req, res) {
+//   debugger;
+//   for (let item of items) {
+//     if (item.name === req.params.name) {
+//       item.price = req.body.price;
+//       return res.json({ updated: item });
+//     }
+//   }
+// });
 
 app.delete("/items/:name", function (req, res) {
   debugger;
